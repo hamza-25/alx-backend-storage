@@ -15,7 +15,7 @@ def get_logs_stats(mongo_collection):
             methods[obj['method']] += 1
         if obj['path'] == '/status' and obj['method'] == 'GET':
             status_check += 1
-    print("{} logs \n\tmethod GET: {}\n\tmethod POST: {}\n\tmethod PUT: {}\n\t\
+    print("{} logs\n\tmethod GET: {}\n\tmethod POST: {}\n\tmethod PUT: {}\n\t\
 method PATCH: {}\n\tmethod DELETE: {}\n{} status check"
           .format(count, methods["GET"], methods["POST"],
                   methods["PUT"], methods["PATCH"],
