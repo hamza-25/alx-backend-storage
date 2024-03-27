@@ -26,7 +26,7 @@ def count_url_access(method):
         return html_content
     return wrapper
 
-
+@count_url_access
 def get_page(url: str) -> str:
     response = requests.get(url)
     return response.text
