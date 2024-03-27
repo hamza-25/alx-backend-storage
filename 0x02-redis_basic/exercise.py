@@ -2,7 +2,7 @@
 """Module defines class and methods redis
 """
 import redis
-from typing import Union, Callable, Optional
+from typing import Union, Callable, Optional, Any
 from uuid import uuid4
 from functools import wraps
 
@@ -48,7 +48,7 @@ def replay(fn: Callable):
         value = int(value.decode("utf-8"))
     except Exception:
         value = 0
-    print("{} was called {} times:".format(func_name, c))
+    print("{} was called {} times:".format(func_name, value))
     key_inp = "{}:inputs".format(func_name)
     key_out = "{}:outputs".format(func_name)
     inputs = re_dis.lrange(key_inp, 0, -1)
