@@ -2,7 +2,7 @@
 """Module defines class and methods redis
 """
 import redis
-from typing import Union
+from typing import Union, Callable, Optional
 from uuid import uuid4
 
 
@@ -18,3 +18,11 @@ class Cache:
         id = str(uuid4())
         self._redis.set(id, data)
         return id
+
+    def get(self, key: str,
+            fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
+        """get key from redis and covert it to required format"""
+        value = self._redis.get(key)
+        if fn:
+            value = fn(value)
+        return value
