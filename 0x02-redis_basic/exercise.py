@@ -26,3 +26,17 @@ class Cache:
         if fn:
             value = fn(value)
         return value
+
+    def get_str(self, key: str) -> str:
+        """parametrize Cache.get with the correct conversion function."""
+        value = self._redis.get(key)
+        return value.decode('utf-8')
+
+    def get_int(self, key: str) -> str:
+        """parametrize Cache.get with the correct conversion function."""
+        value = self._redis.get(key)
+        try:
+            value = int(value.decode('utf-8'))
+        except Exception:
+            value = 0
+        return value
