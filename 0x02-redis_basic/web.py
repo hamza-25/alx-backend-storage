@@ -12,6 +12,7 @@ def count_url_access(method):
     """ track how many times a particular URL was accessed """
     @wraps(method)
     def wrapper(url):
+        """track how many times a particular URL was accessed"""
         cached_key = f"cached:{url}"
         cached_data = ins_redis.get(cached_key)
         if cached_data:
@@ -26,7 +27,9 @@ def count_url_access(method):
         return html_content
     return wrapper
 
+
 @count_url_access
 def get_page(url: str) -> str:
+    """func that get content from url"""
     response = requests.get(url)
     return response.text
